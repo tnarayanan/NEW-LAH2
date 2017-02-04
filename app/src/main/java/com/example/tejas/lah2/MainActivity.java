@@ -9,10 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Array;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     Button progress;
     TextView topText;
-    public EditText fullText;
+    EditText fullText;
+    String fullTextString;
+    public static ArrayList<String> stringSentences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +30,26 @@ public class MainActivity extends AppCompatActivity {
         progress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String fullTextString = fullText.getText().toString();
+                fullTextString = fullText.getText().toString();
+                stringSentences = makeSentences(fullTextString);
                 Toast.makeText(getApplicationContext(), fullTextString, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), Memorize.class);
                 startActivity(intent);
             }
         });
 
+    }
+
+    public ArrayList<String> makeSentences(String str){
+        ArrayList<String> sentences = new ArrayList<String>();
+        int lastPeriod = 0;
+        for(int i = 0; i < str.length(); i++){
+            if(Character.toString(str.charAt(i)).equals(".") || Character.toString(str.charAt(i)).equals("?") || Character.toString(str.charAt(i)).equals("!")) {
+                sentences.add(str.substring(lastPeriod, i + 1));
+                lastPeriod = i + 1;
+            }
+        }
+        return sentences;
     }
 }
 
