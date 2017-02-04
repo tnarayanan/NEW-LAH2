@@ -11,7 +11,44 @@
     tools:context="com.example.tejas.lah2.MainActivity">
 
     <TextView
+        android:text="Enter You Speech Below"
+        android:layout_width="500px"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:id="@+id/topText"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentLeft="false"
+        android:layout_centerInParent="false"
+        android:layout_centerVertical="false"
+        tools:textAlignment="center"
+        android:textColor="@android:color/background_dark" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginTop="39dp"
+        android:id="@+id/speech"
+        tools:textAlignment="center"
+        android:height="50%"
+        android:hint="Enter Here"
+        android:textSize="35sp"
+        android:layout_below="@+id/topText"
+        android:layout_centerHorizontal="true"
+        android:layout_height="250dp" />
+
+    <Button
+        android:text="Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:id="@+id/start"
+        android:layout_centerInParent="true" />
 </RelativeLayout>
