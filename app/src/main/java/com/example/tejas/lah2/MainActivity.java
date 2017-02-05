@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 fullTextString = fullText.getText().toString();
                 stringSentences = makeParagraphs(fullTextString);
                 Toast.makeText(getApplicationContext(), stringSentences.size() + "", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(), Memorize.class);
+                Intent intent = new Intent(getApplicationContext(), ReadThrough.class);
                 startActivity(intent);
             }
         });
