@@ -34,7 +34,12 @@ public class ReadThrough extends AppCompatActivity {
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startSpeechToText();
+                if(!read){
+                    startSpeechToText();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(), Summarize.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -77,7 +82,7 @@ public class ReadThrough extends AppCompatActivity {
                                 textSegment.setText(MainActivity.stringSentences.get(counter));
                             } else {
                                 read = true;
-                                counter = 0;
+                                textSegment.setText("Great!\nYou Finished the Reading!\nClick Below to Transition to Summaries");
                             }
                         } else {
                             Toast.makeText(getApplicationContext(), txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer", Toast.LENGTH_LONG).show();
