@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         for(int i = 0; i < sentences.size(); i++){
-            if(sentences.get(i) == "\n" || sentences.get(i) == " "){
+            if(sentences.get(i) == "\n" || sentences.get(i) == " " || sentences.get(i) == null){
                 sentences.remove(i);
                 i--;
             }
