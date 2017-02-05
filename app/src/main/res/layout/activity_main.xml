@@ -28,20 +28,6 @@
         tools:textAlignment="center"
         android:textColor="@android:color/background_dark" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_marginTop="39dp"
-        android:id="@+id/fullText"
-        tools:textAlignment="center"
-        android:height="50px"
-        android:hint="Enter Here"
-        android:textSize="35sp"
-        android:layout_below="@+id/topText"
-        android:layout_centerHorizontal="true"
-        android:layout_height="250dp" />
-
     <Button
         android:text="Start"
         android:layout_width="wrap_content"
@@ -51,4 +37,18 @@
         android:layout_marginBottom="14dp"
         android:id="@+id/start"
         android:layout_centerInParent="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/fullText"
+        tools:layout_width="match_parent"
+        android:layout_height="500px"
+        android:layout_centerInParent="true"
+        android:textAlignment="center"
+        android:hint="Enter Text Here" />
+
 </RelativeLayout>

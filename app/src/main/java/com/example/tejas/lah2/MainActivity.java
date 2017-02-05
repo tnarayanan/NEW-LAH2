@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fullTextString = fullText.getText().toString();
-                stringSentences = makeSentences(fullTextString);
+                stringSentences = makeParagraphs(fullTextString);
                 Toast.makeText(getApplicationContext(), fullTextString, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), Memorize.class);
                 startActivity(intent);
@@ -43,13 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public ArrayList<String> makeSentences(String str){
+    public ArrayList<String> makeParagraphs(String str){
         ArrayList<String> sentences = new ArrayList<String>();
         int lastPeriod = 0;
         for(int i = 0; i < str.length(); i++){
-            if(Character.toString(str.charAt(i)).equals(".") || Character.toString(str.charAt(i)).equals("?") || Character.toString(str.charAt(i)).equals("!")) {
-                sentences.add(str.substring(lastPeriod, i + 1));
-                lastPeriod = i + 2;
+            if(Character.toString(str.charAt(i)).equals("\n")) {
+                sentences.add(str.substring(lastPeriod, i));
+                lastPeriod = i + 1;
+            }
+        }
+        for(int i = 0; i < sentences.size(); i++){
+            if(sentences.get(i) == "\n" || sentences.get(i) == " "){
+                sentences.remove(i);
+                i--;
             }
         }
         return sentences;
