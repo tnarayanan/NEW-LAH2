@@ -16,7 +16,7 @@ import java.util.Locale;
 
 import static android.widget.Toast.*;
 
-public class Memorize extends AppCompatActivity {
+public class ReadThrough extends AppCompatActivity {
     TextView textSegment;
     int counter = 0;
     Button record;
@@ -73,7 +73,7 @@ public class Memorize extends AppCompatActivity {
                     if(!read) {
                         if (txtOutput.equals(correctWithoutPunc)) {
                             Toast.makeText(getApplicationContext(), "Nice meme website", Toast.LENGTH_SHORT).show();
-                            counter++;
+                            counter ++;
                             if (counter < MainActivity.stringSentences.size()) {
                                 textSegment.setText(MainActivity.stringSentences.get(counter));
                             } else {

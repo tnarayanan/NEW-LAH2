@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 fullTextString = fullText.getText().toString();
                 stringSentences = makeParagraphs(fullTextString);
-                Toast.makeText(getApplicationContext(), fullTextString, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), stringSentences.size() + "", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), Memorize.class);
                 startActivity(intent);
             }
@@ -49,15 +49,11 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < str.length(); i++){
             if(Character.toString(str.charAt(i)).equals("\n")) {
                 sentences.add(str.substring(lastPeriod, i));
+                i++;
                 lastPeriod = i + 1;
             }
         }
-        for(int i = 0; i < sentences.size(); i++){
-            if(sentences.get(i) == "\n" || sentences.get(i) == " " || sentences.get(i) == null){
-                sentences.remove(i);
-                i--;
-            }
-        }
+        sentences.add(str.substring(lastPeriod, str.length()));
         return sentences;
     }
 }
