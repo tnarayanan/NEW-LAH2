@@ -67,7 +67,14 @@ public class Memorize extends AppCompatActivity {
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     String text = result.get(0);
                     txtOutput = text;
-                    textSegment.setText(txtOutput);
+                    txtOutput = txtOutput.toLowerCase();
+                    if(txtOutput.equals(removePunctuation(textSegment.getText().toString()).toLowerCase())){
+                        Toast.makeText(getApplicationContext(), "Nice meme website", Toast.LENGTH_SHORT).show();
+                        counter++;
+                        textSegment.setText(MainActivity.stringSentences.get(counter));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "0 / 10 Would Try Again", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 break;
             }
