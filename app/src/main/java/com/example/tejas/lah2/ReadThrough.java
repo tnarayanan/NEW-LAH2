@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -28,7 +27,7 @@ public class ReadThrough extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         counter = 0;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memorize);
+        setContentView(R.layout.activity_readthrough);
         textSegment = (TextView)findViewById(R.id.textSegment);
         textSegment.setText(MainActivity.stringSentences.get(0));
         record = (Button)findViewById(R.id.record);
