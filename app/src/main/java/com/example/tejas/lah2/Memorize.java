@@ -73,7 +73,7 @@ public class Memorize extends AppCompatActivity {
                         counter++;
                         textSegment.setText(MainActivity.stringSentences.get(counter));
                     } else {
-                        Toast.makeText(getApplicationContext(), "0 / 10 Would Try Again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), txtOutput + "is what I heard, but " + removePunctuation(textSegment.getText().toString()).toLowerCase() + " is the answer", Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
