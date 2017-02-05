@@ -95,7 +95,7 @@ public class ReadThrough extends AppCompatActivity {
     }
     private String removePunctuation(String str) {
         String newString = str;
-        String[] punctuation = {"/", ".", ",", "'", "\"", ";", ":", "(", ")", "!", "?", "-"};
+        String[] punctuation = {"/", ".", ",", "\"", ";", ":", "(", ")", "!", "?", "-"};
         for(int i = 0; i < punctuation.length; i++){
             newString = newString.replace(punctuation[i], "");
         }
