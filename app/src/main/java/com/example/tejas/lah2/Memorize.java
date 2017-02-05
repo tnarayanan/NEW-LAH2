@@ -70,6 +70,7 @@ public class Memorize extends AppCompatActivity {
                     if(txtOutput == removePunctuation(MainActivity.stringSentences.get(counter).toLowerCase())){
                         counter++;
                         textSegment.setText(MainActivity.stringSentences.get(counter));
+                        Toast.makeText(getApplicationContext(), "Nice. Next Sentence", Toast.LENGTH_SHORT);
                     } else {
                         Toast.makeText(getApplicationContext(), "Sorry, try again", Toast.LENGTH_SHORT);
                     }
