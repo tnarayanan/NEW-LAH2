@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     String fullTextString;
     public static ArrayList<String> stringSentences;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < str.length(); i++){
             if(Character.toString(str.charAt(i)).equals(".") || Character.toString(str.charAt(i)).equals("?") || Character.toString(str.charAt(i)).equals("!")) {
                 sentences.add(str.substring(lastPeriod, i + 1));
-                lastPeriod = i + 1;
+                lastPeriod = i + 2;
             }
         }
         return sentences;

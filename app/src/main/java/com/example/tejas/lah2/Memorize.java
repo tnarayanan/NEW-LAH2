@@ -68,12 +68,15 @@ public class Memorize extends AppCompatActivity {
                     String text = result.get(0);
                     txtOutput = text;
                     txtOutput = txtOutput.toLowerCase();
-                    if(txtOutput.equals(removePunctuation(textSegment.getText().toString()).toLowerCase())){
+                    String correctWithoutPunc = removePunctuation(textSegment.getText().toString()).toLowerCase();
+                    if(txtOutput.equals(correctWithoutPunc)){
                         Toast.makeText(getApplicationContext(), "Nice meme website", Toast.LENGTH_SHORT).show();
                         counter++;
-                        textSegment.setText(MainActivity.stringSentences.get(counter));
+                        if (counter < MainActivity.stringSentences.size()) {
+                            textSegment.setText(MainActivity.stringSentences.get(counter));
+                        }
                     } else {
-                        Toast.makeText(getApplicationContext(), txtOutput + "is what I heard, but " + removePunctuation(textSegment.getText().toString()).toLowerCase() + " is the answer", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer", Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
