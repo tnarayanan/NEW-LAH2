@@ -22,6 +22,7 @@ import static android.widget.Toast.*;
 public class Summarize extends AppCompatActivity {
     TextView textSegment;
     TextView wrongText;
+    TextView stage;
     public static int counter = 0;
     Button record;
     private final int SPEECH_RECOGNITION_CODE = 1;
@@ -33,9 +34,11 @@ public class Summarize extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_readthrough);
         textSegment = (TextView)findViewById(R.id.textSegment);
+        stage = (TextView) findViewById(R.id.stage);
         textSegment.setText(MainActivity.stringSentences.get(0));
         wrongText = (TextView) findViewById(R.id.wrongText);
         record = (Button)findViewById(R.id.record);
+        stage.setText("Summary");
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,12 +112,15 @@ public class Summarize extends AppCompatActivity {
                                 }
                             } else {
                                 summaryActive = true;
+                                stage.setText("Summary");
+
                             }
                         } else {
                             wrongText.setText(Html.fromHtml("<b>" + txtOutput + "</b> is what I heard, but <b>" + correctWithoutPunc + "</b> is the answer."
                                     + " You got <b>" + Math.round(getPercent(toWords(txtOutput), toWords(correctWithoutPunc)) * 100) + "% </b> of words correct"));
 
                             summaryActive = false;
+                            stage.setText("Read Through");
                         }
                     }
                 }
