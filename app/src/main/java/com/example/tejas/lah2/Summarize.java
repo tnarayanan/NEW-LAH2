@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.sf.classifier4J.summariser.SimpleSummariser;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -38,14 +40,29 @@ public class Summarize extends AppCompatActivity {
             }
         });
 
-
     }
     private void startSpeechToText() {
+
+        SimpleSummariser summariser = new SimpleSummariser();
+        String summarisedText = summariser.summarise(textSegment.getText().toString(), 3);
+        int prevSentenceEnd = 0;
+
+        String finalString = "";
+        for (int i = 0; i < summarisedText.length(); i++) {
+            String currChar = Character.toString(summarisedText.charAt(i));
+            if (currChar.equals(".") || currChar.equals("?") || currChar.equals("!")) {
+                finalString += "- ";
+                finalString += summarisedText.substring(prevSentenceEnd, i);
+                finalString += "\n";
+                prevSentenceEnd = i + 2;
+            }
+        }
+
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, textSegment.getText().toString());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, finalString);
         try {
             startActivityForResult(intent, SPEECH_RECOGNITION_CODE);
         } catch (ActivityNotFoundException a) {
