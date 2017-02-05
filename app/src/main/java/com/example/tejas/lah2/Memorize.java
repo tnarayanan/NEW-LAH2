@@ -82,7 +82,6 @@ public class Memorize extends AppCompatActivity {
                             }
                         } else {
                             Toast.makeText(getApplicationContext(), txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer", Toast.LENGTH_LONG).show();
-
                         }
                     }
                 }

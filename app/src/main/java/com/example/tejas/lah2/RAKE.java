@@ -3,6 +3,7 @@ package com.example.tejas.lah2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+
 public class RAKE extends AppCompatActivity {
 
     @Override
@@ -10,4 +11,6 @@ public class RAKE extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rake);
     }
+
+
 }
