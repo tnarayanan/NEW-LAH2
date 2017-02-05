@@ -121,4 +121,20 @@ public class ReadThrough extends AppCompatActivity {
         }
         return newString;
     }
+    private  ArrayList<String> toWords(String str) {
+        ArrayList<String> words = new ArrayList<String>();
+        String str1 = str;
+        int lastWord = 0;
+        for(int i = 0; i < str.length(); i++){
+            if(Character.toString(str1.charAt(i)).equals(" ") || Character.toString(str1.charAt(i)).equals("!") || Character.toString(str1.charAt(i)).equals("?") || Character.toString(str1.charAt(i)).equals(".")){
+                words.add(str1.substring(lastWord, i));
+                if(Character.toString(str1.charAt(i)).equals(".") || Character.toString(str1.charAt(i)).equals("!") || Character.toString(str1.charAt(i)).equals("?")){
+                    lastWord = i + 2;
+                } else {
+                    lastWord = i + 1;
+                }
+            }
+        }
+        return words;
+    }
 }
