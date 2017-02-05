@@ -18,4 +18,13 @@
         android:layout_centerVertical="true"
         android:layout_height="500px"
         tools:layout_width="match_parent" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:id="@+id/record"
+        android:layout_below="@+id/textSegment"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
