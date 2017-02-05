@@ -7,12 +7,14 @@ import android.speech.RecognizerIntent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 import static android.widget.Toast.*;
@@ -107,8 +109,8 @@ public class ReadThrough extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Nice meme website", Toast.LENGTH_SHORT).show();
                             updateText();
                         } else {
-                            wrongText.setText(txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer\n"
-                            + "You got " + getPercent(toWords(txtOutput), toWords(correctWithoutPunc)) + "% of words correct");
+                            wrongText.setText(Html.fromHtml("<b>" + txtOutput + "</b> is what I heard, but <b>" + correctWithoutPunc + "</b> is the answer."
+                            + " You got <b>" + Math.round(getPercent(toWords(txtOutput), toWords(correctWithoutPunc)) * 100) + "% </b> of words correct"));
                         }
                     }
                 }
@@ -118,18 +120,50 @@ public class ReadThrough extends AppCompatActivity {
     }
 
     private double getPercent(ArrayList<String> userText, ArrayList<String> correctText) {
-        int correct = 0;
+        int correct1 = 0;
+        int correct2 = 0;
+
+        System.out.println(Arrays.toString(toWords(txtOutput).toArray()));
 
         for(int i = 0; i< correctText.size(); i++){
+            while (userText.size() < correctText.size()) {
+                userText.add("");
+            }
+            int index = userText.indexOf(correctText.get(i));
             if(userText.contains(correctText.get(i))){
-                int index = userText.indexOf(correctText.get(i));
                 if (Math.abs(index - i) < 3) {
-                    correct++;
+                    correct1++;
                 }
             }
+
+            System.out.println("index: " + index);
+            System.out.println("userContainsCorrect: " + Boolean.toString(userText.contains(correctText.get(i))));
+            System.out.println("Math.abs: " + Boolean.toString(Math.abs(index - i) < 3));
+            System.out.println("Correct: " + correct1);
+
         }
 
-        return (double) correct/(correctText.size());
+        for(int i = 0; i< correctText.size(); i++){
+            while (correctText.size() < userText.size()) {
+                correctText.add("");
+            }
+            int index = correctText.indexOf(userText.get(i));
+            if(correctText.contains(userText.get(i))){
+                if (Math.abs(index - i) < 3) {
+                    correct2++;
+                }
+            }
+
+            System.out.println("index: " + index);
+            System.out.println("userContainsCorrect: " + Boolean.toString(correctText.contains(correctText.get(i))));
+            System.out.println("Math.abs: " + Boolean.toString(Math.abs(index - i) < 3));
+            System.out.println("Correct: " + correct2);
+
+        }
+
+        int finalCorrect = Math.min(correct1, correct2);
+
+        return ((double) finalCorrect)/(double) (correctText.size());
     }
 
     private String removePunctuation(String str) {
@@ -152,6 +186,8 @@ public class ReadThrough extends AppCompatActivity {
                 } else {
                     lastWord = i + 1;
                 }
+            } else if (i == str1.length() - 1) {
+                words.add(str1.substring(lastWord));
             }
         }
         return words;
