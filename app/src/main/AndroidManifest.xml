@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".RAKE" />
         <activity android:name=".SpeechGet" />
-        <activity android:name=".ReadThrough"/>
+        <activity android:name=".ReadThrough" />
+        <activity android:name=".Summarize"></activity>
     </application>
 
 </manifest>
