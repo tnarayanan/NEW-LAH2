@@ -1,8 +1,10 @@
 package com.example.tejas.lah2;
 
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.speech.RecognizerIntent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,8 @@ public class ReadThrough extends AppCompatActivity {
     TextView textSegment;
     int counter = 0;
     Button record;
+    Button override;
+    TextView wrongText;
     private final int SPEECH_RECOGNITION_CODE = 1;
     private String txtOutput;
     Boolean read = false;
@@ -31,6 +35,8 @@ public class ReadThrough extends AppCompatActivity {
         textSegment = (TextView)findViewById(R.id.textSegment);
         textSegment.setText(MainActivity.stringSentences.get(0));
         record = (Button)findViewById(R.id.record);
+        override = (Button) findViewById(R.id.override);
+        wrongText = (TextView) findViewById(R.id.wrongText);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,8 +49,27 @@ public class ReadThrough extends AppCompatActivity {
             }
         });
 
+        override.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateText();
+            }
+        });
+
 
     }
+
+    private void updateText() {
+        wrongText.setText("");
+        counter++;
+        if (counter < MainActivity.stringSentences.size()) {
+            textSegment.setText(MainActivity.stringSentences.get(counter));
+        } else {
+            read = true;
+            textSegment.setText("Great!\nYou Finished the Reading!\nClick Below to Transition to Summaries");
+        }
+    }
+
     private void startSpeechToText() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
@@ -76,16 +101,11 @@ public class ReadThrough extends AppCompatActivity {
                     String correctWithoutPunc = removePunctuation(textSegment.getText().toString()).toLowerCase();
                     if(!read) {
                         if (txtOutput.equals(correctWithoutPunc)) {
+                            wrongText.setText("");
                             Toast.makeText(getApplicationContext(), "Nice meme website", Toast.LENGTH_SHORT).show();
-                            counter ++;
-                            if (counter < MainActivity.stringSentences.size()) {
-                                textSegment.setText(MainActivity.stringSentences.get(counter));
-                            } else {
-                                read = true;
-                                textSegment.setText("Great!\nYou Finished the Reading!\nClick Below to Transition to Summaries");
-                            }
+                            updateText();
                         } else {
-                            Toast.makeText(getApplicationContext(), txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer", Toast.LENGTH_LONG).show();
+                            wrongText.setText(txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer");
                         }
                     }
                 }
