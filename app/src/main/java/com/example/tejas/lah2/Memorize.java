@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -28,7 +29,7 @@ public class Memorize extends AppCompatActivity {
         setContentView(R.layout.activity_memorize);
         textSegment = (TextView)findViewById(R.id.textSegment);
         textSegment.setText(MainActivity.stringSentences.get(0));
-        record = (Button)findViewById(R.id.next);
+        record = (Button)findViewById(R.id.record);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,9 +67,23 @@ public class Memorize extends AppCompatActivity {
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     String text = result.get(0);
                     txtOutput = text;
+                    if(txtOutput == removePunctuation(MainActivity.stringSentences.get(counter).toLowerCase())){
+                        counter++;
+                        textSegment.setText(MainActivity.stringSentences.get(counter));
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Sorry, try again", Toast.LENGTH_SHORT);
+                    }
                 }
                 break;
             }
         }
+    }
+    private String removePunctuation(String str) {
+        String newString = str;
+        String[] punctuation = {"/", ".", ",", "'", "\"", ";", ":", "(", ")", "!", "?"};
+        for(int i = 0; i < punctuation.length; i++){
+            newString = newString.replace(punctuation[i], "");
+        }
+        return newString;
     }
 }
