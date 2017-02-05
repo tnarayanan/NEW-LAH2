@@ -100,12 +100,15 @@ public class ReadThrough extends AppCompatActivity {
                     txtOutput = txtOutput.toLowerCase();
                     String correctWithoutPunc = removePunctuation(textSegment.getText().toString()).toLowerCase();
                     if(!read) {
+
+
                         if (txtOutput.equals(correctWithoutPunc)) {
                             wrongText.setText("");
                             Toast.makeText(getApplicationContext(), "Nice meme website", Toast.LENGTH_SHORT).show();
                             updateText();
                         } else {
-                            wrongText.setText(txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer");
+                            wrongText.setText(txtOutput + " is what I heard, but " + correctWithoutPunc + " is the answer\n"
+                            + "You got " + getPercent(toWords(txtOutput), toWords(correctWithoutPunc)) + "% of words correct");
                         }
                     }
                 }
@@ -113,6 +116,22 @@ public class ReadThrough extends AppCompatActivity {
             }
         }
     }
+
+    private double getPercent(ArrayList<String> userText, ArrayList<String> correctText) {
+        int correct = 0;
+
+        for(int i = 0; i< correctText.size(); i++){
+            if(userText.contains(correctText.get(i))){
+                int index = userText.indexOf(correctText.get(i));
+                if (Math.abs(index - i) < 3) {
+                    correct++;
+                }
+            }
+        }
+
+        return (double) correct/(correctText.size());
+    }
+
     private String removePunctuation(String str) {
         String newString = str;
         String[] punctuation = {"/", ".", ",", "\"", ";", ":", "(", ")", "!", "?", "-"};
