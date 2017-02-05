@@ -1,12 +1,16 @@
 package com.example.tejas.lah2;
 
+import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +50,8 @@ public class MemorizeNew extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_readthrough);
 
+        //for color
+        // getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#90AFC5")));
         textSegment = (TextView) findViewById(R.id.textSegment);
         wrongText = (TextView) findViewById(R.id.wrongText);
         currentStage = (TextView) findViewById(R.id.stage);
@@ -59,8 +65,12 @@ public class MemorizeNew extends AppCompatActivity {
         override.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                COUNT++;
-                newSection();
+                if ((COUNT + 1) % NUM_OF_PARAGRAPHS == 0) {
+                    nextStageScreen();
+                } else {
+                    COUNT++;
+                    newSection();
+                }
             }
         });
 
@@ -153,7 +163,7 @@ public class MemorizeNew extends AppCompatActivity {
 
                     if (txtOutput.equals(correctWithoutPunc)) {
                         wrongText.setText("");
-                        Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
                         wrongText.setText("");
                         if (levelsDown > 0) {
                             System.out.println("BAD------------------------------");
