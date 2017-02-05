@@ -21,17 +21,15 @@ import static android.widget.Toast.*;
 
 public class ReadThrough extends AppCompatActivity {
     TextView textSegment;
-    int counter = 0;
+    public static int counter = 0;
     Button record;
     Button override;
     TextView wrongText;
     private final int SPEECH_RECOGNITION_CODE = 1;
     private String txtOutput;
     Boolean read = false;
-    Boolean memorized = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        counter = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_readthrough);
         textSegment = (TextView)findViewById(R.id.textSegment);
@@ -106,7 +104,8 @@ public class ReadThrough extends AppCompatActivity {
 
                         if (txtOutput.equals(correctWithoutPunc)) {
                             wrongText.setText("");
-                            Toast.makeText(getApplicationContext(), "Nice meme website", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+                            wrongText.setText("");
                             updateText();
                         } else {
                             wrongText.setText(Html.fromHtml("<b>" + txtOutput + "</b> is what I heard, but <b>" + correctWithoutPunc + "</b> is the answer."
