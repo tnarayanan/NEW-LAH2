@@ -51,7 +51,7 @@
         android:layout_height="500px"
         android:layout_centerInParent="true"
         android:hint="Enter Text Here"
-        android:textAppearance="@style/AppTheme"
-        android:textColor="@color/shadow" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColorLink="@color/stone" />
 
 </RelativeLayout>
