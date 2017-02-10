@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 fullTextString = fullText.getText().toString();
                 stringSentences = makeParagraphs(fullTextString);
-                Intent intent = new Intent(getApplicationContext(), MemorizeNew.class);
+                Intent intent = new Intent(getApplicationContext(), Memorize.class);
                 startActivity(intent);
             }
         });

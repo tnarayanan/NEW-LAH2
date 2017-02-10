@@ -1,16 +1,12 @@
 package com.example.tejas.lah2;
 
-import android.app.ActionBar;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +20,7 @@ import java.util.Locale;
 import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
 
-public class MemorizeNew extends AppCompatActivity {
+public class Memorize extends AppCompatActivity {
 
     TextView textSegment;
     TextView wrongText;
@@ -48,7 +44,7 @@ public class MemorizeNew extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_readthrough);
+        setContentView(R.layout.activity_memorize);
 
         //for color
         // getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#90AFC5")));
