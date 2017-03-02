@@ -30,7 +30,7 @@ public class Memorize extends AppCompatActivity {
     Button next;
     Button override;
 
-    final int NUM_OF_PARAGRAPHS = MainActivity.stringSentences.size();
+    final int NUM_OF_PARAGRAPHS = MainActivity.stringParagraphs.size();
     private final int SPEECH_RECOGNITION_CODE = 1;
     int COUNT = 0;
 
@@ -92,7 +92,7 @@ public class Memorize extends AppCompatActivity {
 
         System.out.println(COUNT);
 
-        textSegment.setText(MainActivity.stringSentences.get(COUNT % NUM_OF_PARAGRAPHS));
+        textSegment.setText(MainActivity.stringParagraphs.get(COUNT % NUM_OF_PARAGRAPHS));
         next.setVisibility(View.INVISIBLE);
         record.setVisibility(View.VISIBLE);
 

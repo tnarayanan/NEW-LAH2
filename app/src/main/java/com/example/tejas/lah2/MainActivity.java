@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     TextView topText;
     EditText fullText;
     String fullTextString;
-    public static ArrayList<String> stringSentences;
+    public static ArrayList<String> stringParagraphs;
 
 
 
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 fullTextString = fullText.getText().toString();
-                stringSentences = makeParagraphs(fullTextString);
+                stringParagraphs = makeParagraphs(fullTextString);
                 Intent intent = new Intent(getApplicationContext(), Memorize.class);
                 startActivity(intent);
             }
@@ -41,17 +41,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static ArrayList<String> makeParagraphs(String str){
-        ArrayList<String> sentences = new ArrayList<String>();
-        int lastPeriod = 0;
-        for(int i = 0; i < str.length(); i++){
-            if(Character.toString(str.charAt(i)).equals("\n")) {
-                sentences.add(str.substring(lastPeriod, i));
-                i++;
-                lastPeriod = i + 1;
+        ArrayList<String> paragraphs = new ArrayList<String>();
+        int lastParagraph = 0;
+        int i = 0;
+
+        while (str.charAt(i) < 32) {
+            i++;
+        }
+
+        for(int j = i; j < str.length(); j++){
+            if(str.charAt(j) < 32) {
+                paragraphs.add(str.substring(lastParagraph, j));
+                while (str.charAt(j) < 32) {
+                    j++;
+                }
+                j--;
             }
         }
-        sentences.add(str.substring(lastPeriod, str.length()));
-        return sentences;
+        paragraphs.add(str.substring(lastParagraph, str.length()));
+        return paragraphs;
     }
 }
 
