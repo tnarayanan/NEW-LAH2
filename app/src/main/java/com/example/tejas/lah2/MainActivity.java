@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 while (str.charAt(j) < 32) {
                     j++;
                 }
+                lastParagraph = j;
                 j--;
             }
         }
