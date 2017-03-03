@@ -38,7 +38,8 @@
         android:id="@+id/start"
         android:layout_centerInParent="true"
         android:background="@color/stone"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:height="5dp"/>
 
     <EditText
         android:layout_width="wrap_content"
